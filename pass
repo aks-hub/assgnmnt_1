@@ -1,0 +1,24 @@
+import hashlib
+counter=1
+md5_pass=input("Enter the hash password")
+md5_file=input("Enter wordlist location")
+try:
+    md5_file=open(md5_file,'r')
+except:
+    print("file not found")
+    quit()
+for password in md5_file:
+    hash_obj=hashlib.md5(password.strip().encode('utf-8')).hexdigest()
+  
+    print("trying password %d------->%s"%(counter,password.strip()))
+    counter=counter+1
+    
+    
+    
+    if hash_obj==md5_pass:
+        print("password found!!! Password is %s" % password)
+        break
+else:
+    print("password not found")
+
+
